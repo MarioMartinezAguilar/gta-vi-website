@@ -1,0 +1,91 @@
+---
+    import MainLayout  from "../layouts/MainLayout.astro";
+---
+
+    <MainLayout>
+        <main class="w-full min-h-screen bg-[#080d19] px-6 py-24">
+            <section class="w-full max-300 mx-auto">
+                <div class="text-center mb-12">
+                    <p class="personajes-subtitle text-[#c9bafa] text-sm tracking-[0.3em] mb-3">
+                        GRAND THEFT AUTO VI
+                    </p>
+
+                    <h1 class="personajes-title font-['Barlow_Condensed'] font-extrabold
+                        text-4xl md:text-6xl text-[#ffe4a6] uppercase">
+                        Conoce a los personajes
+                    </h1>
+
+                    <p class="text-[#c9bafa] mt-3 text-sm md:text-base">
+                        Las historias que dan vida a Leonida.
+                    </p>
+                </div>
+                <div class="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <article class="personaje-card relative  h-130 md:h-140 overflow-hidden rounded-xl">
+
+                        <img 
+                            src="/images/desktop/Boobie.jpg" 
+                            alt="Boobie"
+                            class="absolute inset-0 w-full h-full object-cover
+                            mask-[linear-gradient(to_bottom,black_0%,black_85%,transparent_100%)]"
+                        >
+                        <div class="absolute inset-0 bg-linear-to-t from-[#b5a5e8]/90 via-transparent to-transparent"></div>
+                        <div class="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-black/10"></div>
+                        <div class="card-shine absolute inset-0 pointer-events-none"></div>
+                        <div class="absolute bottom-10 left-4 right-4 text-center text-white">
+                            <h2 class="font-extrabold text-2xl text-[#ffe4a6]">
+                                BOOBIE IKE
+                            </h2>
+                            <p class="text-sm mt-2">
+                                Una leyenda de Vice City que convirtió su pasado en las calles en un imperio de negocios, música y entretenimiento.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="personaje-card relative h-130 md:h-140 overflow-hidden rounded-xl">
+
+                        <img 
+                            src="/images/desktop/Brian_Heder.jpg" 
+                            alt="Brian"
+                            class="absolute inset-0 w-full h-full object-cover
+                            mask-[linear-gradient(to_bottom,black_0%,black_85%,transparent_100%)]"
+                        >
+                        <div class="absolute inset-0 bg-linear-to-t from-[#b5a5e8]/90 via-transparent to-transparent"></div>
+                        <div class="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-black/10"></div>
+                        <div class="card-shine absolute inset-0 pointer-events-none"></div>
+                        <div class="absolute bottom-10 left-4 right-4 text-center text-white">
+                            <h2 class="font-extrabold text-2xl text-[#ffe4a6]">
+                                BRIAN HEDER
+                            </h2>
+                            <p class="text-sm mt-2">
+                                Un veterano del contrabando que todavía mueve mercancía desde su astillero en los Cayos de Leonida.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="personaje-card relative h-130 md:h-140 overflow-hidden rounded-xl">
+
+                        <img 
+                            src="/images/desktop/Jason_Lucia.jpg" 
+                            alt="Jason_Lucia"
+                            class="absolute inset-0 w-full h-full object-cover
+                            mask-[linear-gradient(to_bottom,black_0%,black_85%,transparent_100%)]"
+                        >
+                        <div class="absolute inset-0 bg-linear-to-t from-[#b5a5e8]/90 via-transparent to-transparent"></div>
+                        <div class="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-black/10"></div>
+                        <div class="card-shine absolute inset-0 pointer-events-none"></div>
+                        <div class="absolute bottom-10 left-4 right-4 text-center text-white">
+                            <h2 class="font-extrabold text-2xl text-[#ffe4a6]">
+                                 JASON Y LUCIA
+                            </h2>
+                            <p class="text-sm mt-2" >
+                                Dos personas que buscan cambiar su destino, pero una operación fallida los arrastra a una peligrosa conspiración criminal.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+        <script>
+            import '../scripts/personajes-animations.js'
+        </script>
+    </MainLayout>

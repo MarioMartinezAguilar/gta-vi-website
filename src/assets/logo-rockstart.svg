@@ -1,0 +1,16 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <text
+    x="8"
+    y="72"
+    fill="white"
+    font-size="70"
+    font-weight="900"
+    font-family="Arial, sans-serif"
+  >R</text>
+
+  <path
+    d="M72 48 L77 61 L91 61 L80 70 L84 84 L72 76 L60 84 L64 70 L53 61 L67 61 Z"
+    fill="white"
+  />
+</svg>

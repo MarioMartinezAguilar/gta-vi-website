@@ -1,0 +1,81 @@
+--- 
+    import MainLayout  from "../layouts/MainLayout.astro";
+---
+
+<MainLayout>
+    <main class="w-full min-h-screen bg-[#080d19]">
+        <section class="explorar-section relative w-full h-[75svh] md:min-h-screen md:h-screen overflow-hidden">
+            <img src="/images/desktop/Vice_City.jpg" alt="vice_city"
+                class="explorar-image absolute inset-0 w-full h-full object-cover object-[55%_center] md:object-center"
+            >
+            <div class="absolute inset-0 bg-linear-to-t from-[#080d19] via-black/20 to-black/30"></div>
+
+            <div class="absolute inset-0 z-10 flex flex-col items-center justify-end text-center px-6 pb-24">
+                <span class="explorar-subtitle text-sm md:text-base uppercase tracking-[0.4em] text-[#fdf25d] font-extrabold drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mb-4">
+                    Bienvenido a
+                </span>
+                <h1 class="explorar-title text-5xl sm:text-7xl md:text-8xl font-bold uppercase text-white tracking-wider">
+                    Explora Leonida
+                </h1>
+
+                 <p class=" explorar-description max-w-xl text-white/80 text-base md:text-lg mt-5">
+                    Descubre un mundo lleno de contrastes, historias y lugares por explorar.
+                </p>
+
+            </div>
+        </section>
+
+        <section class="explorar-section relative w-full h-[75svh] md:min-h-screen md:h-screen overflow-hidden bg-[#080d19]">
+            <img 
+                src="/images/desktop/Leonida_Keys.jpg" 
+                alt="Leonida"
+                class="explorar-image absolute inset-0 w-full h-full object-cover"
+            >
+            <div class="absolute inset-0 bg-linear-to-t from-[#080d19] via-black/20 to-black/30"></div>
+
+            <div class="absolute inset-0 z-10 flex flex-col items-start justify-end px-8 md:px-20 pb-24">
+
+                <span class="explorar-subtitle text-sm md:text-base uppercase tracking-[0.4em] text-[#fdf25d] font-extrabold mb-4">
+                    Más allá de la ciudad
+                </span>
+
+                <h2 class="explorar-title text-5xl sm:text-7xl md:text-8xl font-bold uppercase text-white tracking-wider">
+                    Leonida Keys
+                </h2>
+
+                <p class="explorar-description max-w-xl text-white/80 text-base md:text-lg mt-5">
+                    Un paraíso tropical donde el océano, las islas y la libertad se encuentran.
+                </p>
+            </div>
+
+        </section>
+        
+        <section class="explorar-section relative w-full h-[75svh] md:min-h-screen md:h-screen overflow-hidden bg-[#080d19]">
+            <img 
+                src="/images/desktop/armas.jpg" 
+                alt="arsenal"
+                class="explorar-image absolute inset-0 w-full h-full object-cover"
+            >
+            <div class="absolute inset-0 bg-linear-to-t from-[#080d19] via-black/20 to-black/30"></div>
+            <div class="absolute inset-0 z-10 flex flex-col items-end justify-end text-right px-8 md:px-20 pb-24">
+
+                <span class=" explorar-subtitle text-sm md:text-base uppercase tracking-[0.4em] text-[#fdf25d] font-extrabold mb-4">
+                    No todo es glamour en Leonida
+                </span>
+
+                <h2 class="explorar-title text-5xl sm:text-7xl md:text-8xl font-bold uppercase text-white tracking-wider">
+                    El lado peligroso
+                </h2>
+
+                <p class="explorar-description max-w-xl text-white/80 text-base md:text-lg mt-5">
+                    Dinero, poder y peligro. En las calles de Leonida, cada decisión tiene consecuencias.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+    <script>
+        import '../scripts/explorar-animations.js'
+    </script>
+</MainLayout>

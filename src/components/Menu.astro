@@ -1,0 +1,69 @@
+---
+    import Rockstart from '../assets/logo-rockstart.svg';
+    import { X } from 'lucide-astro';
+    
+---
+
+<section  id="menu-overlay" class="menu-overlay fixed top-30 bottom-0 left-0  z-40 w-full flex flex-col lg:flex-row invisible opacity-0">
+    <!-- primera zona(izq) -->
+     <div class="menu-image relative w-full h-[35%] lg:w-[73%] lg:h-full overflow-hidden pl-1">
+        <img 
+            src="/images/desktop/mujeres.webp" 
+            alt="Imagen GTA"
+            class="w-full h-full object-cover object-[center_50%]"
+        >
+    </div>
+
+    <div class="menu-principal w-full h-[65%] lg:w-[27%] lg:h-full bg-[#080d19] text-white flex  flex-col px-6 py-5 md:px-10 md:py-10 ">
+        <div class=" flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <Rockstart class="w-12 h-12 md:w-20 md:h-20"/>
+                <span class="font-extrabold text-sm md:text-base text-[#c9bafa]">Grand Theft Auto VI</span>
+            </div>
+            <button class=" flex items-center justify-center menu-close w-9 h-9  md:w-12 md:h-12 rounded-full bg-[#29294e] text-[#c9bafa] text-3xl font-light cursor-pointer transition-colors duration-300 hover:bg-[#f8dea3] hover:text-[#080d19]" aria-label="Cerrar menu" type="button">
+                <X size={24} strokedWidth={1.5}/>
+            </button>
+
+        </div>
+        
+
+        <nav class="flex flex-col gap-4 mt-6 md:gap-7 md:mt-16">
+            <a href="/" class="text-4xl md:text-6xl font-bold uppercase tracking-wide font-['Barlow_Condensed']">
+                inicio
+            </a>
+            <a href="/#trailer" class="text-4xl w-full flex items-center justify-between md:text-6xl font-bold uppercase tracking-wide font-['Barlow_Condensed']">
+                Tráiler
+                <span class="text-4xl font-light">›</span>
+            </a>
+            <a href="/personajes" class="w-full flex items-center justify-between text-4xl md:text-6xl font-bold uppercase tracking-wide font-['Barlow_Condensed']">
+                Personajes
+                <span class="text-4xl font-light">›</span>
+            </a>
+            <a href="/explorar" class=" w-full flex items-center justify-between text-4xl md:text-6xl font-bold uppercase tracking-wide font-['Barlow_Condensed']">
+                Explorar
+                <span class="text-4xl font-light">›</span>
+            </a>
+        </nav>
+        
+
+        <div class="menu-footer mt-auto border-t border-[#49445e] pt-3 md:pt-5 flex items-center justify-between">
+
+            <div class="flex flex-col gap-1">
+                <span class="text-sm font-bold tracking-wider text-[#c9bafa]">
+                ROCKSTAR GAMES
+                </span>
+
+                <span class="text-xs tracking-wider text-[#9994ac]">
+                GRAND THEFT AUTO VI
+                </span>
+            </div>
+
+            <span class="text-xs tracking-wider text-[#9994ac]">
+                © ROCKSTAR
+            </span>
+
+        </div>
+       
+ 
+    </div>
+</section>

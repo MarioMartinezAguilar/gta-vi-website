@@ -1,0 +1,79 @@
+---
+	import Mosaic from '../components/Mosaic.astro';
+ 	import MainLayout  from '../layouts/MainLayout.astro';
+ 	import ReleaseSection from '../components/ReleaseSection.astro';
+ 	import TrailerSeccion  from '../components/TrailerSeccion.astro';
+ 	import Cards from '../components/CardSection.astro';
+ 
+---
+
+
+	
+	<MainLayout>
+		<!-- contener principal que contiene el mosaico -->
+		<main class="flex flex-col min-h-[calc(100vh-130px)] items-center justify-center pt-4 overflow-hidden bg-[#080d19]">
+			<!-- <div class="relative h-[85vh] max-h-screen aspect-[1280/1416] max-w-full">
+				<img
+					class="absolute inset-0 w-full h-full object-contain" 
+					src="images/shard1.webp" 
+					alt="helicóptero"
+				>
+				<img
+					class="absolute inset-0 w-full h-full object-contain" 
+					src="images/shard2.webp" 
+					alt="gta"
+				>
+				<img
+					class="absolute inset-0 w-full h-full object-contain" 
+					src="images/shard3.webp" 
+					alt="motocicleta"
+				>
+				<img
+					class="absolute inset-0 w-full h-full object-contain" 
+					src="images/shard4.webp" 
+					alt="mujer-gta"
+				>
+				
+				<img
+					class="absolute inset-0 w-full h-full object-contain" 
+					src="images/shard5.webp" 
+					alt="cocodrilo"
+				>
+				<img
+					class="absolute inset-0 w-full h-full object-contain" 
+					src="images/shard6.webp" 
+					alt="hombre"
+				>
+				<img
+					class="absolute inset-0 w-full h-full object-contain" 
+					src="images/shard7.png" 
+					alt="carro"
+				>
+				<img
+					class="absolute inset-0 w-full h-full object-contain" 
+					src="images/shard8.webp" 
+					alt="armado"
+				>
+				<img
+					class="absolute inset-0 w-full h-full object-contain" 
+					src="images/shard9.webp" 
+					alt="lancha"
+				>
+				
+				
+				
+				
+				
+
+			</div> -->
+			<Mosaic/>
+			<ReleaseSection/>
+		</main>
+		<TrailerSeccion/>
+		<Cards/>
+		
+		<script>
+			import '../scripts/animations.js'
+		</script>
+	</MainLayout>
+

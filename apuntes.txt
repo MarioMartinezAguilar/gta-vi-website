@@ -1,0 +1,463 @@
+index.astro donde esta el mosaico
+1. La sección de Astro: Frontmatter -> es donde importamos nuestro componentes y nuestro estilos globales, donde se encuentran importados los estilos de tailwind
+Frontmatter de Astro (---)
+Es la sección donde importamos componentes, archivos y escribimos código JavaScript o TypeScript que necesitamos para preparar nuestra página.
+Import-> Es una instrucción de JavaScript que permite utilizar código o recursos de otros archivos.
+
+clases en tailwind 
+flex -> activa el modelo Flexbox.
+justify-center-> centra los elementos en el eje principal.
+items-center-> centra los elementos en el eje transversal.
+Cuando utilizamos flex con la dirección predeterminada (row), el eje principal es horizontal y el transversal es vertical.
+
+min-h-screen-> Establece una altura mínima igual a la pantalla.
+overflow-hidden->Oculta el contenido que sobresale del contenedor.
+bg-[#080d19]-> Establece un color de fondo personalizado
+
+clases usadas en en div que contiene el mosaico
+
+-translate-y-10->	Desplaza el contenedor hacia arriba.
+relative->	Establece el contenedor como referencia para los elementos absolute.
+w-full->	Ocupa el 100 % del ancho disponible.
+max-w-[1000px]-> Limita el ancho máximo a 1000 píxeles.(Significa que el contenedor puede reducirse si no hay suficiente espacio, pero no crecerá más allá de 1000 píxeles.)
+aspect-video-> Mantiene una proporción de 16:9.(Establece una proporción de 16:9. Si el ancho es 1000 píxeles, la altura será aproximadamente 562.5 píxeles.)
+border-[15px]-> Establece un borde de 15 píxeles.
+border-[#13011b] -> Define el color del borde.
+mosaico-frame-> Es una clase personalizada que utilizamos para animar el borde con GSAP.
+
+**ASPECT-VIDEO**
+Establece una relación de aspecto de 16:9.Permite mantener las proporciones del contenedor aunque cambie su ancho.
+Ejemplo: 1000 × 562.5 px.
+
+********imágenes del mosaico***************
+img->	Elemento HTML para mostrar una imagen.
+shard->Clase personalizada para identificar las piezas del mosaico.
+absolute-> Posiciona la imagen respecto al contenedor de referencia.
+inset-0-> Coloca sus cuatro lados en cero. es decir estas posiciones(top: 0,right: 0,bottom: 0, left: 0)
+w-full->Ancho del 100%.
+h-full->Alto del 100 %.
+object-contain->Ajusta la imagen para que quepa sin deformarse.
+
+**OBJECT-CONTAIN**
+Ajusta el contenido de una imagen dentro de su contenedor, manteniendo sus proporciones y evitando deformaciones.
+
+**OBJECT-COVER**
+Hace que la imagen cubra todo el contenedor, aunque tenga que recortar parte de ella.
+
+**SUPERPOSICIÓN DE IMÁGENES**
+Utilizamos varias imágenes con position: absolute para colocarlas en la misma área.
+Cada imagen aporta una parte diferente de la composición y el orden del HTML determina cuál se pinta encima cuando se superponen.
+
+- border-[15px]: grosor personalizado del borde.
+- border-[#13011b]: color personalizado del borde.
+- mosaico-frame: clase propia utilizada para identificar el contenedor desde GSAP.
+
+***Logos gta y logo gtaVI****
+también influye el orden de los elementos en el HTML, pero cuando los elementos tienen distintos valores de z-index dentro del mismo contexto de apilamiento, el valor más alto queda por encima.
+
+pointer-events-none->Hace que ese elemento no capture los eventos del mouse.Esto es útil porque el destello está encima de los logos, pero no queremos que bloquee interacciones con los elementos que pudiera haber debajo.
+
+***z-index***
+z-10: una capa inferior.
+z-20: una capa superior.
+z-30: una capa todavía más arriba.
+
+**Aplicación en el proyecto**
+Logo VI	z-10->Inferior
+Logo GTA z-20->Intermedia
+Destello z-30->Superior
+
+z-index controla el orden de apilamiento de los elementos. Dentro del mismo contexto de apilamiento, un valor mayor se muestra por encima de uno menor.
+**Clases Tailwind**
+logo-flare:clase personalizada para identificar el destello.
+absolute: posicionamiento absoluto.
+inset-0: ocupa toda el área del contenedor.
+z-30: se coloca por encima de los logos.
+pointer-events-none: no captura eventos del mouse(evita que un elemento capture eventos del mouse o puntero, permitiendo interactuar con elementos situados debajo.)
+
+
+************************************************
+GSAP->GreenSock Animation Platform
+GSAP Timeline
+Es una secuencia que permite organizar varias animaciones y controlar cuándo comienza cada una.
+const tl = gsap.timeline();
+Creamos una timeline y la guardamos en la variable tl.
+
+******ANIMACIÓN DE LAS NUEVE IMÁGENES DEL MOSAICO*******
+tl: nuestra variable que contiene la Timeline de GSAP.
+.from(): indica que queremos animar los elementos desde un estado inicial hasta su estado original.
+opacity-> controla la opacidad de un elemento, es decir, qué tan transparente o visible está.
+**En otras palabras**-> opacity: controla la transparencia de un elemento. En gsap.from(), establecer opacity: 0 hace que la animación comience con el elemento invisible y termine con su opacidad original.
+y: 30-> comienza desplazado 30 píxeles hacia abajo.
+y: 30:-> establece un desplazamiento vertical inicial de 30 píxeles hacia abajo. Durante la animación, el elemento regresa a su posición original.
+scale:-> controla el tamaño de un elemento. 
+Con scale: 0.96, la animación comienza al 96 % del tamaño original y termina en su tamaño normal.
+duration:-> establece el tiempo que dura una animación. GSAP utiliza segundos como unidad de tiempo.
+stagger:-> establece un intervalo de tiempo entre el inicio de la animación de cada elemento seleccionado. Permite crear un efecto de aparición escalonada.
+
+power3-> define la intensidad de la curva de aceleración.
+out:-> indica que la animación comienza rápida y va desacelerando hasta terminar.
+ease-> controla la curva de velocidad de una animación, definiendo cómo acelera o desacelera durante su ejecución.
+
+****ANIMACIÓN DEL BORDE DEL MOSAICO****
+from()-> establece el estado inicial y anima hasta el estado actual del elemento.
+to()-> anima desde el estado actual del elemento hasta los valores que indicamos.
+fromTo()-> nos permite establecer explícitamente tanto el estado inicial como el estado final.
+**En otras palabras**->gsap.fromTo(): permite definir explícitamente el estado inicial y el estado final de una animación.
+
+**Diferencia:**
+gsap.from(): tú defines cómo comienza la animación y GSAP utiliza como destino los valores actuales del elemento.
+gsap.fromTo(): tú defines tanto los valores iniciales como los valores finales de la animación.
+Animación del borde: utilizamos gsap.fromTo() para controlar el color inicial y final del borde del contenedor del mosaico.
+
+
+****animación del logo VI****
+La animación del logo VI utiliza gsap.from() para hacerlo aparecer desde un estado inicial invisible y con la mitad de su tamaño, hasta alcanzar su estado original en un segundo.
+
+**Animación de las letras logo GTA(efecto cortina)**
+clipPath->Es una propiedad de CSS que permite definir qué parte de un elemento será visible y qué parte quedará recortada.
+tenemos el siguiente código: clipPath: 'inset(0 0 100% 0)':
+inset()->define cuánto recortamos desde cada lado:
+por ejemplo:
+0 arriba: no recortamos.
+0 derecha: no recortamos.
+100% abajo: recortamos toda la altura desde abajo.
+0 izquierda: no recortamos.
+estado final: clipPath: 'inset(0 0 0% 0)'
+Aquí los cuatro valores son cero, así que no se recorta ninguna parte del logo. Se muestra completamente.
+Utilizamos gsap.fromTo() para crear el efecto cortina del logo GTA. Comienza completamente recortado y termina completamente visible, revelándose de arriba hacia abajo.
+
+**Destello o brillo en el centro**
+*Creamos un div para generar el destello aparte con css*
+absolute: permite posicionarlo sobre el mosaico.
+inset-0: ocupa todo el espacio del contenedor.
+z-30: lo coloca por encima de los logos (z-10 y z-20).
+pointer-events-none: evita que interfiera con los eventos del ratón.
+**Diferencia**
+GSAP: controla cómo aparece, cambia de tamaño y desaparece el destello.
+CSS: define su apariencia visual, por ejemplo, el color, el brillo, los gradientes y su forma.
+
+**Código css para el brillo**
+background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 220, 170, 0.4) 18%,
+    transparent 55%
+);
+radial-gradient()-> crea un degradado que se expande desde un punto central hacia afuera.
+ellipse:->indica que el degradado tiene forma elíptica.
+at center: establece que comienza desde el centro.
+rgba(255, 255, 255, 0.9) 0%: centro blanco con 90 % de opacidad.
+rgba(255, 220, 170, 0.4) 18%: tono cálido con 40 % de opacidad.
+transparent 55%: el degradado se vuelve transparente hacia el exterior.
+filter: blur(12px)->Aplica un desenfoque de 12 píxeles. Esto suaviza los bordes del degradado para que no parezca una figura con límites definidos.
+**Conclusión**-> CSS define la apariencia visual del destello mediante un degradado radial, desenfoque y opacidad. GSAP controla su aparición, transparencia y escala.
+**En otras palabras**-> filter: blur(12px): aplica un desenfoque de 12 píxeles para suavizar el degradado y conseguir un efecto de brillo más natural.
+**Volviendo a gsap**
+to()->establece el destino desde el estado actual.lo utilizamos en nuestro brillo(anima un elemento desde su estado actual hasta los valores finales que indicamos.)
+
+**GSAP**
+gsap.from()->Estado inicial
+gsap.to()->Estado final
+gsap.fromTo()->Estado inicial y final
+
+
+**Banner**
+promo-banner-wrapper:-> es nuestra clase personalizada para seleccionar este contenedor desde GSAP.
+h-0:-> establece una altura inicial de cero píxeles.
+overflow-hidden:-> oculta cualquier contenido que sobresalga de sus límites.
+cursor-pointer-> simplemente hace que el cursor cambie al pasar sobre el banner.
+**Dos contenedores**
+El contenedor exterior comienza con altura 0.
+El banner interior ya tiene una altura de 70px.
+overflow-hidden: oculta el contenido que sobresale de los límites de un contenedor. En nuestro proyecto evita que el banner sea visible antes de iniciar su animación.
+
+**GSAP**->'-=1.2';
+Este último argumento es el que controla cuándo comienza la animación dentro de la Timeline.
+Significa que la animación del banner comienza 1.2 segundos antes de que termine la animación anterior.
+Así conseguimos que el banner empiece a bajar mientras todavía está terminando la revelación del logo GTA, en lugar de esperar a que todo termine.
+
+**En otras palabras**-> -=1.2: parámetro de posición de GSAP Timeline. Permite iniciar una animación 1.2 segundos antes de que termine la animación anterior.
+
+**Animación**
+tl.from('.promo-banner', {
+    y: -70,
+    opacity: 0,
+    duration: 0.8,
+    ease: 'power3.out'
+}, '<');
+Comience desplazado 70 píxeles hacia arriba.
+Comience invisible (opacity: 0).
+Se desplace hasta su posición original y aparezca.
+'< significa que esta animación comienza al mismo tiempo que la animación inmediatamente anterior.('< en una Timeline indica que la animación actual comienza al mismo tiempo que la animación anterior.)
+
+Por eso ambas animaciones trabajan juntas:
+- El contenedor exterior aumenta su altura.
+- El banner interior baja desde arriba y aparece.
+
+**Explicación en el proyecto**
+La diferencia es:
+- -=1.2: inicia la animación 1.2 segundos antes de que termine la animación anterior.
+- '<': inicia la animación exactamente al mismo tiempo que comienza la animación anterior.
+Por ejemplo, en nuestro proyecto:
+1. -=1.2 hace que el banner empiece a desplegarse antes de que termine la animación anterior.
+2. '<' hace que la aparición del banner interior comience simultáneamente con el despliegue de su contenedor exterior.
+
+**Notas de los parámetros**
+-=1.2->Adelanta 1.2 segundos el inicio respecto al final de la animación anterior.
+'<'->Sincroniza el inicio con el comienzo de la animación anterior.
+
+
+**EVENTOS EN GSAP**
+const banner = document.querySelector('.promo-banner');
+document:->representa el documento HTML.
+querySelector():-> busca un elemento utilizando un selector CSS.
+.promo-banner:-> es la clase del banner que queremos seleccionar.
+banner:-> guarda la referencia a ese elemento.
+
+addEventListener()->Esta función permite escuchar eventos que ocurren sobre un elemento.
+mouseenter:->se ejecuta cuando el cursor entra en el elemento.
+() => {}-> es una función flecha que contiene lo que queremos ejecutar cuando ocurre el evento.
+
+const glow = document.querySelector('.promo-glow');
+Esta variable guarda la referencia al <div> que creamos para el brillo del banner.
+
+**Concepto de clases:**
+.promo-banner: es el contenedor principal del banner.
+.promo-glow: es la capa que contiene el brillo y que queremos animar.
+glow: ->variable que guarda la referencia al elemento .promo-glow, permitiéndonos animar específicamente la capa de brillo del banner.
+
+**Brillo en el banner**
+utilizamos gsap.to() para modificar dos propiedades del brillo:
+- scale: 1.2: aumenta su escala al 120 %.
+- filter: 'brightness(1.5)': aumenta su brillo.(Aumenta la luminosidad del elemento. No cambia directamente su color, sino que hace que se vea más brillante.)
+brightness():-> filtro CSS que controla la luminosidad de un elemento. Un valor de 1.5 aumenta su brillo respecto al valor normal de 1.
+
+**mouseleave y GSAP**
+scale: 1-> regresa al 100 % de su tamaño original.
+brightness(1)-> recupera su luminosidad normal.
+duration: 0.5-> tarda medio segundo en realizar la transición.
+
+**Explicación de los eventos utilizados en nuestro proyecto**
+mouseenter y mouseleave permiten ejecutar animaciones cuando el cursor entra o sale de un elemento. En nuestro proyecto los utilizamos para aumentar y restaurar el brillo del banner.
+
+****Parte final animación por separado****
+gsap.to():-> anima el brillo desde su estado actual hasta el valor indicado.
+opacity: 1:-> hace que el brillo alcance una opacidad completa.
+duration: 7:-> establece que la transición dure siete segundos.
+ease: 'power1.inOut': comienza suavemente, acelera en la parte intermedia y vuelve a desacelerar al final.
+**Nota->**esta animación comienza por separado, no espera a que termine nuestra Timeline.
+Esta animación controla la aparición progresiva del brillo del banner durante siete segundos. Se ejecuta independientemente de la Timeline principal.
+
+**Otros conceptos**
+power2 y power3-> representan diferentes intensidades de aceleración o desaceleración. El modificador out hace que la animación desacelere al finalizar.
+
+
+*****************************estilos del nav***********************************
+w-full: el Navbar ocupa todo el ancho disponible.
+h-[80px]: establecemos una altura de 80 píxeles.
+bg-[#080d19]: utilizamos el mismo fondo azul oscuro de la página.
+flex: activamos Flexbox.
+items-center: centramos los elementos verticalmente.
+justify-between: separamos los elementos hacia los extremos.
+px-8: agregamos espacio horizontal interno.
+
+********************************simulando el menú*********************************
+flex flex-col: coloca las dos líneas una debajo de la otra.
+gap-2: establece separación entre ellas.
+cursor-pointer: muestra el cursor de interacción al pasar sobre el menú.
+w-8: establece el ancho de cada línea.
+h-[3px]: establece su grosor.
+bg-white: les da el color blanco.
+
+
+*********************ReleaseSection*******************
+clases tailwind Section
+max-w-[1000px]: limita el ancho a 1000 px.
+mx-auto: centra horizontalmente la sección.
+w-full: permite que ocupe todo el ancho disponible hasta ese máximo.
+****Flechita clases tailwind****
+relative: establece el punto de referencia para posicionar la flecha.
+absolute: saca la flecha del flujo normal, así no modifica la altura del bloque.
+top-full: coloca la flecha justo debajo del botón.
+
+
+
+mt-2: añade una pequeña separación.
+
+****GSAP PULSO DE LA FLECHA****
+brightness(1.8): aumenta el brillo.
+duration: 1.5: tarda 0.8 segundos en aumentar.
+repeat: -1: repite la animación infinitamente.
+yoyo: true: vuelve al estado inicial después de cada pulso.
+ease: suaviza la transición.
+sine.inOut: suaviza el aumento y la disminución del brillo.
+
+
+
+****ScrollTrigger****
+ScrollTrigger-> es un plugin de GSAP que permite controlar animaciones según la posición y el desplazamiento del scroll de la página.
+
+****Propiedades de ScrollTrigger****
+existen dos propiedades definir qué elemento activa la animación y en qué momento comienza.
+trigger->Indica qué elemento de la página vamos a utilizar como referencia para activar la animación.
+start->Indica en qué posición comienza la activación, tomando como referencia el elemento y la ventana del navegador.
+****En otras palabras****
+trigger: elemento que utilizamos como referencia para activar una animación.
+start: posición en la que comienza la animación, definida mediante la relación entre el elemento y el viewport.
+
+****Propiedades importantes****
+top bottom = ->la parte superior del elemento alcanza la parte inferior del viewport.
+center center =-> el centro del elemento coincide con el centro del viewport y ahí se activa la animación.
+top center =->Arriba del elemento llega al centro.
+
+end->que nos permite definir en qué posición termina el recorrido del ScrollTrigger.
+end:->define la posición donde termina el recorrido de ScrollTrigger. Junto con start, establece el tramo de scroll durante el cual puede desarrollarse una animación.
+
+start y end definen el tramo de desplazamiento durante el cual ScrollTrigger controla la animación.
+
+scrub->permite vincular el progreso de una animación al desplazamiento del usuario.
+scrub:-> vincula el progreso de una animación al desplazamiento del scroll, permitiendo avanzar o retroceder según la posición del usuario.
+scrub: true:-> sincroniza la animación con el desplazamiento del usuario. Al bajar avanza y al subir retrocede.
+
+pin->permite mantener un elemento fijo en la pantalla durante un tramo del desplazamiento.
+pin: fija temporalmente un elemento en la pantalla mientras se desarrolla el recorrido de ScrollTrigger. Al finalizar, el desplazamiento continúa normalmente.
+pin->controla cuánto tiempo permanece fijado un elemento, pero no determina si desaparece. Eso depende de las propiedades que animemos.
+
+Al combinar pin y scrub, podemos mantener un elemento fijo mientras su animación avanza o retrocede según el scroll.
+
+La combinación de pin y scrub permite mantener un elemento fijo mientras su animación avanza o retrocede según el desplazamiento del usuario.
+
+gsap.registerPlugin(ScrollTrigger) ->registra el complemento para que GSAP pueda utilizar sus funcionalidades.
+
+
+****Efecto brillo en la tarjetas****
+Shine Effect (efecto de brillo) o Light Sweep (barrido de luz).
+linear-gradient: crea una franja de luz.
+translateX(-150%): coloca el destello fuera de la tarjeta.
+article:hover: activa el efecto cuando pasas el cursor.
+translateX(150%): desplaza la luz hasta el otro extremo.
+pointer-events-none: permite que el cursor interactúe con la tarjeta sin que el destello interfiera.
+
+**PROPIEDADES DEL ScrollTrigger EN LAS TARJETAS**
+opacity:-> 0	Comienzan transparentes.
+y: 60->	Comienzan 60 píxeles más abajo.
+stagger:-> 0.2	Entran una después de otra.
+duration: -> 1	Cada animación dura un segundo.
+start:-> 'top 75%'	Comienza cuando la parte superior de las tarjetas llega al 75% de la ventana.
+reverse->Permite revertir la animación al subir.
+
+
+
+****Mascara en el trailer con css****
+1. mask-image-> Es la propiedad que permite aplicar una máscara sobre un elemento.
+La máscara controla qué partes del elemento se muestran y cuáles se ocultan.
+2. -webkit-mask-image->Es la versión con prefijo de compatibilidad para navegadores basados en WebKit, como Safari.
+La colocamos junto a mask-image para mejorar la compatibilidad entre navegadores.
+3. linear-gradient()->Crea una transición gradual entre diferentes colores o valores.
+to bottom->Indica que el degradado va de arriba hacia abajo.
+black 0%->En la parte superior, la imagen se muestra completamente.
+black 55%->Hasta el 55%, la imagen continúa completamente visible.
+transparent 100%->En la parte inferior, la imagen queda completamente oculta.
+
+Esta es la parte más importante de las máscaras:
+black: la zona del elemento se muestra completamente.
+transparent: la zona del elemento se oculta completamente.
+Los valores intermedios generan una transición gradual.
+
+botón del menú
+aria-label:-> proporciona un nombre accesible.
+aria-expanded:-> indicará si el menú está abierto o cerrado.
+aria-controls:-> relaciona el botón con el menú.
+
+****gsap****
+menu: el panel completo.
+menuButton: el botón hamburguesa.
+closeButton: la X que ya tenemos en el menú.
+paused: true: evita que la animación se ejecute automáticamente.
+
+
+*Animación del Menú*
+autoAlpha: 1: hace visible el menú y lleva su opacidad a 1.
+duration: 0.5: la transición dura medio segundo.
+ease: 'power2.out': hace que la animación termine suavemente.
+
+efecto en los enlaces del menú
+opacity: 0: empiezan transparentes.
+x: 40: comienzan desplazados 40 píxeles hacia la derecha.
+duration: 0.5: cada enlace tarda medio segundo.
+stagger: 0.15: espera 0.15 segundos entre cada enlace.
+ease: suaviza el movimiento.
+
+
+****animaciones título de los personajes****
+Ese efecto se le conoce como animación de entrada con profundidad (Scale Reveal) y efecto escalonado (Stagger).
+las tarjetas y el título se animan simultáneamente, también tenemos una animación solapada (Overlapping Animations).
+opacity: 0: comienza invisible.
+y: 40: comienza 40 píxeles más abajo.
+filter: blur(10px): comienza desenfocado.
+duration: 1.2: tarda 1.2 segundos.
+power3.out: hace que el movimiento desacelere suavemente.
+ScrollTrigger: activa la animación cuando el título llega al 85% de la ventana.
+
+
+****Desplazamiento con javascript y gsap con enlaces****
+document.querySelector()->a[href="/#trailer"]: busca una etiqueta <a> cuyo atributo href sea exactamente /#trailer.
+
+addEventListener('click'): escucha cuando el usuario hace clic.
+?.: es el operador de encadenamiento opcional.
+e.preventDefault()->Evitamos la navegación predeterminada cuando se hace click
+
+Cerramos el menú
+document.querySelector('.menu-close')?.click();
+Después ejecutamos el click es decir Esto dispara su evento de clic, que ya está conectado a nuestra animación de cierre en shared-animations.js.
+Actualizamos ScrollTrigger
+ScrollTrigger.refresh()->Esto le indica a GSAP que vuelva a calcular las posiciones y dimensiones de los elementos que controla ScrollTrigger.
+
+Obtenemos la posición final
+const trailerPosition = scrollTl.scrollTrigger.end
+
+Desplazamos la página
+window.scrollTo(): desplaza la ventana.
+top: indica hasta qué posición queremos desplazarnos.
+behavior: 'smooth': hace que el desplazamiento sea suave.
+
+resumen del recorrido 
+El usuario pulsa Tráiler.
+JavaScript intercepta el clic.
+Cancelamos la navegación predeterminada.
+Disparamos el cierre animado del menú.
+Actualizamos las posiciones de ScrollTrigger.
+Obtenemos el punto final de scrollTl.
+Desplazamos la página hasta ese punto y GSAP revela el tráiler mediante scrub.
+
+*otro escenario desde personajes*
+tl.progress() devuelve el progreso de la animación: 0 significa que no ha comenzado y 1 que terminó.
+tl.eventCallback('onComplete', ...) ejecuta una función cuando termina la línea de tiempo.
+goToTrailer() contiene nuestro desplazamiento anterior.
+
+
+****Efecto parallax****
+El parallax consiste en crear una sensación de profundidad mediante elementos que se desplazan a velocidades diferentes.
+yPercent: -20: establece un desplazamiento vertical inicial de -20 % respecto a la altura del elemento.
+scale: 1.3: amplía la imagen al 130 % de su tamaño original.
+La imagen pasa de -20 a 20 en su desplazamiento vertical, mientras mantiene el zoom de 1.3
+
+scrollTrigger
+empieza
+top: parte superior de nuestra sección.
+bottom: parte inferior de la ventana del navegador.
+termina
+top: parte superior de la ventana.
+
+
+*efecto en los textos de explorar,titulo,subtitulo y descripción*
+opacity: 0->Los textos comienzan invisibles.
+y: 40->Comienzan 40 píxeles más abajo.
+duration:1->Cada animación dura un segundo.
+stagger:0.25->Hay 0.25 segundos entre cada elemento.
+ease:'power2.out'->Termina suavemente.
+
+trigger: section: cada sección controla sus textos.
+start: 'top 70%': comienza cuando la parte superior de la sección llega al 70 % de la ventana.
+toggleActions: reproduce la animación al entrar y la revierte al salir hacia arriba.

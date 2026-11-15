@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap');
+@import "tailwindcss";
+
+body {
+    background: #080d19;
+}
+.promo-glow {
+    background: radial-gradient(
+    ellipse 45% 130% at center,
+    rgba(255, 145, 90, 0.9) 0%,
+    rgba(255, 145, 90, 0.4) 35%,
+    rgba(255, 145, 90, 0.12) 65%,
+    transparent 100%
+);
+
+    filter: blur(18px);
+    opacity: 0;
+}
+
+/*Efecto de brillo en el centro del logo_gta*/
+.logo-flare {
+    background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 220, 170, 0.4) 18%,
+    transparent 55%
+);
+    filter: blur(12px);
+    opacity: 0;
+}
+
+/*CSS de navbar para el destello y el efecto hover*/
+.navbar-logo{
+    color: white;
+    transition: color 0.3s ease, filter  0.3s ease;
+
+}
+.navbar-logo:hover{
+    color: #f8dea3;
+  
+}
+.navbar-line {
+  display: block;
+  width: 25px;
+  height: 6px;
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-menu:hover .navbar-line {
+  background-color: #f8dea3;
+  
+}
+/*brillo al botón haciendo hover*/
+.reserve-button{
+    cursor: pointer;
+    transition: background-color 0.7s ease, box-shadow 0.7s ease;
+}
+.reserve-button:hover{
+    background-color: white;
+    box-shadow: 
+        0 0 6px rgba(255, 255, 255, 0.7),
+        0 0 16px rgba(244, 181, 202, 0.6),
+        0 0 28px rgba(244, 181, 202, 0.35);
+} 
+/*fecha con brillito*/
+.release-date {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+/*Brillo de las tarjetas*/
+.card-shine {
+    background: linear-gradient(
+        115deg,
+        transparent 38%,
+        rgba(255, 255, 255, 0.50) 50%,
+        transparent 62%
+    );
+
+    transform: translateX(-150%);
+    transition: transform 0.8s ease;
+}
+
+article:hover .card-shine {
+    transform: translateX(150%);
+}
+article:active .card-shine {
+    transform: translateX(150%);
+}
+/*mask para el trailer*/
+.trailer-image{
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        black 0%,
+        black 55%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        black 0%,
+        black 55%
+        transparent 100%
+
+    );
+}
+
+
+/*Estilos de l menú*/
+.menu-principal nav a {
+     color: #c9bafa;;
+    transition: color 0.3s ease;
+}
+
+.menu-principal nav a:hover {
+    color: #f8dea3;
+}
+
